@@ -11,7 +11,7 @@ builder. Services. AddEndpointsApiExplorer();
 builder. Services. AddSwaggerGen();
 builder. Services. AddDbContext<StoreContext>(options =>
     options. UseSqlServer(builder. Configuration. GetConnectionString("StoreContext") ?? throw new InvalidOperationException("Connection string 'StoreContext' not found.")));
-
+builder. Services. AddCors();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -21,6 +21,7 @@ if (app. Environment. IsDevelopment())
     app. UseSwaggerUI();
     }
 
+app. UseCors(opt => opt. AllowAnyHeader(). AllowAnyMethod(). WithOrigins("http://localhost:3000"));
 
 app. UseAuthorization();
 
@@ -32,7 +33,7 @@ var logger = scope.ServiceProvider.GetService<ILogger<Program>>();
 
 try
     {
-    context.Database.Migrate();
+    context. Database. Migrate();
     DbInitializer. DbInitialize(context);
     }
 catch (Exception ex)
