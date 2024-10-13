@@ -1,5 +1,5 @@
 import { Avatar, Button, Card, CardActions, CardContent, CardHeader, CardMedia, Typography } from "@mui/material";
-import { Product } from "../models/Products";
+import { Product } from "../../models/Products";
 interface Props {
     product: Product;
 }

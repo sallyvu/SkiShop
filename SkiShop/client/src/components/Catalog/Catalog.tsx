@@ -1,7 +1,7 @@
 
 import { Grid } from "@mui/material";
-import { Product } from "../models/Products"
-import ProductCard from "./ProductCard";
+import { Product } from "../../models/Products"
+import ProductCard from "../Products/ProductCard";
 import { useEffect, useState } from "react";
 
 export default function Catalog() { 

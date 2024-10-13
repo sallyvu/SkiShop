@@ -1,29 +1,27 @@
+import { Container, CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { useState } from "react";
+import { Outlet } from "react-router-dom";
 import Header from "../components/Header";
-import { Container, CssBaseline, Switch, createTheme } from "@mui/material";
-import Catalog from "../components/Catalog";
-import { ThemeProvider } from "@emotion/react";
-
-
 
 function App() {
-    const [darkMode, setDarkMode] = useState(false)
-    const paletteTheme = darkMode ? 'dark' : 'light'
+    const [darkMode, setDarkMode] = useState(false);
     const theme = createTheme({
         palette: {
-            mode: paletteTheme,
+            mode: darkMode? 'dark' : 'light',
             background: {
-                default: darkMode ? '#121212' : '#eaeaea'}
-        },
-    });
-    const handleThemeChange = () => setDarkMode(!darkMode)
+                default: darkMode? '#121212' : '#eaeaea'
+            }
+    }
+});
+    const handleThemeChange = () => {
+        setDarkMode(!darkMode)
+    }
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline/>
-            <Header />
-            <Switch checked={darkMode} onChange={handleThemeChange} />
+            <Header darkMode={darkMode} handleThemeChange={handleThemeChange}/>
             <Container>
-                <Catalog/>
+                <Outlet/>
             </Container>
         </ThemeProvider>
   
